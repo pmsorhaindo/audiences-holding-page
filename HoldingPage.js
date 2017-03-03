@@ -1,7 +1,10 @@
 import React from 'react';
+import { Base, Grid, GridCell } from 'bw-axiom';
 
 export default function HoldingPage() {
   return (
-    <div> Audiences Holding Page </div>
+    <div style={ style }>
+
+    </div>
   );
 };

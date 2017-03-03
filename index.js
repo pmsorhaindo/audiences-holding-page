@@ -1,12 +1,8 @@
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import Html from './Html';
+import { render } from 'react-dom';
 import HoldingPage from './HoldingPage';
 
-export default function render() {
-  return renderToString(
-    <Html>
-      <HoldingPage />
-    </Html>
-  );
-};
+render(
+  <HoldingPage />,
+  document.getElementById('react-root')
+);
