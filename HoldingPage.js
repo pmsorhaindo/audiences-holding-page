@@ -1,8 +1,7 @@
 import React from 'react';
-import { Base } from 'bw-axiom';
 
 export default function HoldingPage() {
-  return ( <Base> test </Base> );
+  return ( <div> test </div> );
 };
     /*<Base stye={style}>
       <div>

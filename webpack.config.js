@@ -24,14 +24,7 @@ module.exports = {
     path: 'dist'
   },
   plugins: [
-    new StaticSiteGeneratorPlugin({
-      globals: {
-        self: {
-          navigator: {},
-          toLowerCase: {}
-        },
-      }
-    }),
+    new StaticSiteGeneratorPlugin(),
     new webpack.DefinePlugin(globals)
   ]
 };
