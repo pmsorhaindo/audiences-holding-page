@@ -1,6 +1,6 @@
-const webpack = require('webpack');
-
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 const globals = {
   __INCLUDE_CSS__: true,
 };
@@ -8,32 +8,15 @@ const globals = {
 module.exports = {
   entry: './index.js',
   module: {
-    loaders: [
-    {
-      exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader',
-      query: {
-        presets: [
-          'es2015',
-          'react',
-        ]
-      },
-      test: /\.js$/
+    rules: [{
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader']
     }, {
-      test: /_shadow\.scss$/,
-      loader: 'css!autoprefixer?browsers=last 2 version!sass',
-    }, {
-      test: /^((?!_shadow\.scss).)*\.scss$/,
-      loader:
-        'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true&includePaths[]=./node_modules',
-    }, {
-      test: /\.css$/,
-      loader: 'style!css',
-    }, {
-      test: /\.(woff2?|svg|ttf|eot)([\?]?.*)$/,
-      loader: 'file-loader?name=[name].[ext]',
-    }
-    ]
+      test: /\.js$/,
+      use: [{
+        loader: 'babel-loader',
+      }]
+    }],
   },
   output: {
     filename: 'index.js',
@@ -41,7 +24,14 @@ module.exports = {
     path: 'dist'
   },
   plugins: [
-    new StaticSiteGeneratorPlugin(),
+    new StaticSiteGeneratorPlugin({
+      globals: {
+        self: {
+          navigator: {},
+          toLowerCase: {}
+        },
+      }
+    }),
     new webpack.DefinePlugin(globals)
   ]
 };
