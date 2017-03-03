@@ -3,7 +3,8 @@ import { Base, Grid, GridCell } from 'bw-axiom';
 
 export default function HoldingPage() {
   return (
-    <div style="middle">
+    <div style={ style }>
+
     </div>
   );
 };
