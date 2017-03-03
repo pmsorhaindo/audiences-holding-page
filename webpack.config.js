@@ -1,11 +1,20 @@
-const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+
+const globals = {
+  __INCLUDE_CSS__: true,
+};
 
 module.exports = {
   entry: './index.js',
   module: {
     loaders: [
     {
-      exclude: /(node_modules|bower_components)/,
+      loader: ['style-loader', 'css-loader', 'sass-loader'],
+      test:  /\.scss$/
+    }, {
+      exclude: /(node_modules)/,
       loader: 'babel-loader',
       query: {
         presets: [
@@ -19,10 +28,13 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    libraryTarget: 'umd',
-    path: 'dist'
+    path: path.resolve(__dirname, 'dist')
   },
   plugins: [
-    new StaticSiteGeneratorPlugin()
+    new HtmlWebpackPlugin({
+      template: './template.ejs',
+      title: 'Audiences Holding Page'
+    }),
+    new webpack.DefinePlugin(globals)
   ]
 };
