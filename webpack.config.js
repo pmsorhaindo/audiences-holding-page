@@ -1,4 +1,9 @@
+const webpack = require('webpack');
+
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const globals = {
+  __INCLUDE_CSS__: true,
+};
 
 module.exports = {
   entry: './index.js',
@@ -14,6 +19,19 @@ module.exports = {
         ]
       },
       test: /\.js$/
+    }, {
+      test: /_shadow\.scss$/,
+      loader: 'css!autoprefixer?browsers=last 2 version!sass',
+    }, {
+      test: /^((?!_shadow\.scss).)*\.scss$/,
+      loader:
+        'style!css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap=true&sourceMapContents=true&includePaths[]=./node_modules',
+    }, {
+      test: /\.css$/,
+      loader: 'style!css',
+    }, {
+      test: /\.(woff2?|svg|ttf|eot)([\?]?.*)$/,
+      loader: 'file-loader?name=[name].[ext]',
     }
     ]
   },
@@ -23,6 +41,7 @@ module.exports = {
     path: 'dist'
   },
   plugins: [
-    new StaticSiteGeneratorPlugin()
+    new StaticSiteGeneratorPlugin(),
+    new webpack.DefinePlugin(globals)
   ]
 };
