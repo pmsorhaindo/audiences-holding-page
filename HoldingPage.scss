@@ -1,0 +1,12 @@
+@import '~bw-axiom/lib/design-patterns/spacing/vars';
+@import '~bw-axiom/lib/design-patterns/colors/vars';
+
+.au-holding-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0 $page-padding-h;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}

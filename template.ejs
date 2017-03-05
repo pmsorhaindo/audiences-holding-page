@@ -11,13 +11,12 @@
   </head>
 
   <body>
-    <div class="dm-app-container" id="react-root">
+    <div id="react-root">
       <% if (htmlWebpackPlugin.options.html) { %>
         <%= htmlWebpackPlugin.options.html %>
       <% } %>
     </div>
 
-    test
     <% if (htmlWebpackPlugin.options.script) { %>
       <script src="<%= htmlWebpackPlugin.options.script %>" type="application/javascript"></script>
     <% } %>
