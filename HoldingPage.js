@@ -1,10 +1,18 @@
 import React from 'react';
-import { Base, Grid, GridCell } from 'bw-axiom';
+import { Base, Heading, LogoTab, Weak } from 'bw-axiom';
 
-export default function HoldingPage() {
+if (__INCLUDE_CSS__) {
+    require('./HoldingPage.scss');
+}
+
+export default function HoldingPage(props)  {
+  const { application, backgroundImage, theme } = props;
+  const style = { backgroundImage: `url(${backgroundImage})`, backgroundColor: "black" };
+
   return (
-    <div style={ style }>
-
-    </div>
+    <Base className="au-holding-page" style={ style } theme={ theme }>
+      <LogoTab color="grey" height={ "7.75rem" }/>
+      <Heading space="small" style="display">{ application }<Weak>/ Audiences is currently down for Maintenance</Weak></Heading>
+    </Base>
   );
 };
