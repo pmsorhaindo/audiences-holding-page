@@ -12,7 +12,9 @@ export default function HoldingPage(props)  {
   return (
     <Base className="au-holding-page" style={ style } theme={ theme }>
       <LogoTab color="grey" height={ "7.75rem" }/>
-      <Heading space="small" style="display">{ application }<Weak>/ Audiences is currently down for Maintenance</Weak></Heading>
+      <Base className="au-holding-page__content">
+        <Heading space="small" style="display" textColor="light">{ application }<Weak>/ is currently unavailable.</Weak></Heading>
+      </Base>
     </Base>
   );
 };
