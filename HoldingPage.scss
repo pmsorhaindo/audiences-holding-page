@@ -1,12 +1,18 @@
 @import '~bw-axiom/lib/design-patterns/spacing/vars';
 @import '~bw-axiom/lib/design-patterns/colors/vars';
 
+$status-message-padding: $page-padding-h *6;
+
 .au-holding-page {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
   padding: 0 $page-padding-h;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+
+.au-holding-page__content {
+  margin: $status-message-padding;
 }
